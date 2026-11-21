@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7ef">
+    <meta name="description" content="A practical fertilizer planning estimate based on crop, soil-test ratings, field size, and forecast rain." data-i18n-content="heroDescription">
+    <title data-i18n-document-title="plannerTitle">agriSense | Fertilizer planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="language.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="agriSense home">
+        <span class="brand-mark" aria-hidden="true">a</span>
+        <span>agriSense<span class="brand-period">.</span></span>
+      </a>
+      <span class="topbar-note"><span class="status-dot"></span> <span data-i18n="tagline">A smarter season starts here</span></span>
+      <nav class="topbar-actions" aria-label="Main navigation" data-i18n-aria-label="navigation">
+        <a class="topbar-link" href="#how-it-works" data-i18n="how">How it works</a>
+        <a class="topbar-link" id="sign-in-link" href="auth.html?mode=login" data-i18n="signIn">Sign in</a>
+        <a class="topbar-link topbar-primary" id="register-link" href="auth.html?mode=register" data-i18n="register">Create account</a>
+        <span class="account-label" id="account-label" hidden></span>
+        <button class="logout-button" id="logout-button" type="button" data-i18n="signOut" hidden>Sign out</button>
+        <label class="language-control">
+          <span class="sr-only" data-i18n="language">Language</span>
+          <select id="language-select" aria-label="Language" data-i18n-aria-label="language">
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            <option value="bn">বাংলা</option>
+            <option value="ta">தமிழ்</option>
+            <option value="te">తెలుగు</option>
+          </select>
+        </label>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div class="eyebrow"><span class="eyebrow-line"></span> <span data-i18n="eyebrow">YOUR FIELD, IN BALANCE</span></div>
+        <h1><span class="hero-line" data-i18n="heroFirst">Feed your soil.</span><br><span class="hero-line hero-highlight" data-i18n="heroSecond">Grow with intention.</span></h1>
+        <p data-i18n="heroDescription">Get a practical fertilizer plan shaped by your crop, soil test, and the weather ahead.</p>
+      </section>
+
+      <section class="planner" aria-label="Fertilizer planner" data-i18n-aria-label="plannerTitle">
+        <form class="input-card" id="planner-form" aria-label="Fertilizer planner" data-i18n-aria-label="plannerTitle">
+          <div class="card-heading">
+            <div>
+              <span class="step-label" data-i18n="fieldProfile">STEP 01 / FIELD PROFILE</span>
+              <h2 data-i18n="fieldTitle">Tell us about your field</h2>
+            </div>
+            <span class="heading-icon" aria-hidden="true">✳</span>
+          </div>
+
+          <label class="field-label" for="crop" data-i18n="cropQuestion">What are you growing?</label>
+          <div class="select-wrap">
+            <select id="crop" name="crop">
+              <option value="maize" data-i18n-option="maize">Maize / corn</option>
+              <option value="wheat" data-i18n-option="wheat">Wheat</option>
+              <option value="rice" data-i18n-option="rice">Rice</option>
+              <option value="tomato" data-i18n-option="tomato">Tomato</option>
+              <option value="cotton" data-i18n-option="cotton">Cotton</option>
+            </select>
+            <span class="select-chevron" aria-hidden="true">⌄</span>
+          </div>
+
+          <div class="field-grid">
+            <div>
+              <label class="field-label" for="area" data-i18n="fieldSize">Field size</label>
+              <div class="input-wrap">
+                <input id="area" name="area" type="number" min="0.1" max="100000" step="0.1" value="12" required>
+                <span class="input-unit" data-i18n="acres">acres</span>
+              </div>
+            </div>
+            <div>
+              <label class="field-label" for="ph" data-i18n="soilPh">Soil pH</label>
+              <div class="input-wrap">
+                <input id="ph" name="ph" type="number" min="3" max="10" step="0.1" value="6.4" required>
+                <span class="input-unit">pH</span>
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="soil-fieldset">
+            <legend class="field-label" data-i18n="nutrientLevels">Soil test nutrient levels</legend>
+            <p class="field-hint" data-i18n="soilHint">Choose the rating shown on your latest soil test.</p>
+            <div class="nutrient-grid">
+              <label class="nutrient-select">
+                <span class="nutrient-symbol n-symbol">N</span>
+                <span class="nutrient-name" data-i18n="nitrogen">Nitrogen</span>
+                <select name="nitrogen" aria-label="Nitrogen soil test rating" data-i18n-aria-label="nitrogen">
+                  <option value="low" data-i18n-option="low">Low</option>
+                  <option value="medium" selected data-i18n-option="medium">Medium</option>
+                  <option value="high" data-i18n-option="high">High</option>
+                </select>
+              </label>
+              <label class="nutrient-select">
+                <span class="nutrient-symbol p-symbol">P</span>
+                <span class="nutrient-name" data-i18n="phosphorus">Phosphorus</span>
+                <select name="phosphorus" aria-label="Phosphorus soil test rating" data-i18n-aria-label="phosphorus">
+                  <option value="low" selected data-i18n-option="low">Low</option>
+                  <option value="medium" data-i18n-option="medium">Medium</option>
+                  <option value="high" data-i18n-option="high">High</option>
+                </select>
+              </label>
+              <label class="nutrient-select">
+                <span class="nutrient-symbol k-symbol">K</span>
+                <span class="nutrient-name" data-i18n="potassium">Potassium</span>
+                <select name="potassium" aria-label="Potassium soil test rating" data-i18n-aria-label="potassium">
+                  <option value="low" data-i18n-option="low">Low</option>
+                  <option value="medium" data-i18n-option="medium">Medium</option>
+                  <option value="high" selected data-i18n-option="high">High</option>
+                </select>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="weather-field">
+            <div class="weather-copy">
+              <label class="field-label" for="rainfall" data-i18n="expectedRain">Expected rain in the next 7 days</label>
+              <span class="field-hint" data-i18n="forecastHint">A forecast helps with application timing.</span>
+            </div>
+            <div class="input-wrap rain-input">
+              <input id="rainfall" name="rainfall" type="number" min="0" max="2000" step="0.1" value="35" required>
+              <span class="input-unit">mm</span>
+            </div>
+          </div>
+          <div class="forecast-controls">
+            <button class="forecast-button" id="weather-button" type="button" data-i18n="fetchWeather">Get local 7-day forecast</button>
+            <p class="forecast-status" id="weather-status" role="status" aria-live="polite"></p>
+            <details class="manual-location">
+              <summary data-i18n="enterCoordinates">Or enter coordinates manually</summary>
+              <div class="coordinate-grid">
+                <div>
+                  <label class="field-label" for="latitude" data-i18n="latitude">Latitude</label>
+                  <input class="coordinate-input" id="latitude" type="number" min="-90" max="90" step="any" inputmode="decimal" placeholder="e.g. 28.6">
+                </div>
+                <div>
+                  <label class="field-label" for="longitude" data-i18n="longitude">Longitude</label>
+                  <input class="coordinate-input" id="longitude" type="number" min="-180" max="180" step="any" inputmode="decimal" placeholder="e.g. 77.2">
+                </div>
+              </div>
+              <button class="forecast-button coordinate-button" id="manual-weather-button" type="button" data-i18n="fetchCoordinates">Get forecast for these coordinates</button>
+            </details>
+          </div>
+          <div class="weather-metrics" aria-label="Sunlight and temperature forecast" data-i18n-aria-label="weatherMetrics">
+            <div class="weather-metric">
+              <span class="weather-metric-label" data-i18n="sunshineLabel">Sunshine over the next 7 days</span>
+              <strong id="sunshine-value">—</strong>
+            </div>
+            <div class="weather-metric">
+              <span class="weather-metric-label" data-i18n="temperatureLabel">Temperature range · 7 days</span>
+              <strong id="temperature-value">—</strong>
+            </div>
+          </div>
+          <input id="sunshine-hours" name="sunshineHours" type="hidden">
+          <input id="temperature-min" name="temperatureMin" type="hidden">
+          <input id="temperature-max" name="temperatureMax" type="hidden">
+
+          <button class="submit-button" type="submit">
+            <span data-i18n="buildPlan">Build my fertilizer plan</span> <span aria-hidden="true">→</span>
+          </button>
+          <p class="form-footnote"><span aria-hidden="true">⌁</span> <span data-i18n="soilFootnote">A good plan starts with what your soil already has.</span></p>
+        </form>
+
+        <section class="results-card" aria-labelledby="results-title" aria-live="polite">
+          <div class="results-topline">
+            <span class="step-label" data-i18n="planStep">STEP 02 / YOUR PLAN</span>
+            <span class="estimate-tag"><span></span> <span data-i18n="estimate">PLANNING ESTIMATE</span></span>
+          </div>
+          <div class="results-heading">
+            <div>
+              <p class="results-kicker" id="results-context">MAIZE / CORN · 12 ACRES</p>
+              <h2 id="results-title"><span data-i18n="balanced">A balanced</span><br><span data-i18n="startingPoint">starting point.</span></h2>
+            </div>
+            <div class="sun-icon" aria-hidden="true">☼</div>
+          </div>
+
+          <div class="nutrient-summary" aria-label="Nutrients to plan for" data-i18n-aria-label="nutrientSummary">
+            <div class="summary-label"><span data-i18n="nutrientSummary">NUTRIENTS TO PLAN FOR</span> <span data-i18n="perAcre">(lb / acre)</span></div>
+            <div class="summary-values" id="nutrient-summary"></div>
+          </div>
+
+          <div class="recommendation">
+            <div class="recommendation-heading">
+              <h3 data-i18n="fertilizerMix">Your fertilizer mix</h3>
+              <span data-i18n="productTotal">PRODUCT · TOTAL FOR FIELD</span>
+            </div>
+            <div id="product-list" class="product-list"></div>
+          </div>
+
+          <div class="weather-advice" id="weather-advice">
+            <span class="weather-icon" aria-hidden="true">☁</span>
+            <div>
+              <strong data-i18n="forecastTitle">Mind the forecast</strong>
+              <p id="weather-message"></p>
+            </div>
+          </div>
+
+          <button class="save-plan-button" id="save-plan-button" type="button" data-i18n="signInToSave">Sign in to save this plan</button>
+          <p class="plan-status" id="plan-status" role="status" aria-live="polite"></p>
+          <div class="saved-plans" id="saved-plans" hidden>
+            <h3 data-i18n="savedPlans">Saved field plans</h3>
+            <div id="saved-plan-list"></div>
+          </div>
+
+          <p class="disclaimer">
+            <span aria-hidden="true">ⓘ</span>
+            <span data-i18n="disclaimer">This is an educational estimate using generalized crop nutrient targets. Confirm rates against a recent calibrated soil test, local guidance, and your fertilizer labels before applying.</span>
+          </p>
+        </section>
+      </section>
+
+      <section class="how-section" id="how-it-works">
+        <span class="step-label" data-i18n="healthyPlan">A HEALTHIER WAY TO PLAN</span>
+        <div class="how-grid">
+          <h2><span data-i18n="belowGround">Good growing</span><br><span data-i18n="belowGroundSecond">begins</span> <span data-i18n="belowGroundThird">below ground.</span></h2>
+          <p data-i18n="aboutText">agriSense estimates nutrient needs from your crop and soil-test ratings, then turns them into familiar fertilizer products. Forecast rain adds a timing reminder, so you can plan for uptake and reduce nutrient loss.</p>
+        </div>
+      </section>
+
+      <footer>
+        <a class="brand footer-brand" href="#"><span class="brand-mark" aria-hidden="true">a</span><span>agriSense<span class="brand-period">.</span></span></a>
+        <span data-i18n="footerTagline">Thoughtful inputs. Resilient fields.</span>
+        <span class="footer-units" data-i18n="units">US customary units · lb / acre</span>
+      </footer>
+    </main>
+  </body>
+</html>

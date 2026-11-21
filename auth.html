@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7ef">
+    <meta name="description" content="Sign in or create an agriSense account.">
+    <title data-i18n-document-title="authTitle">agriSense | Sign in or create account</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="language.js" defer></script>
+    <script src="auth.js" defer></script>
+  </head>
+  <body class="auth-page">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="agriSense home">
+        <span class="brand-mark" aria-hidden="true">a</span>
+        <span>agriSense<span class="brand-period">.</span></span>
+      </a>
+      <div class="auth-topbar-actions">
+        <label class="language-control">
+          <span class="sr-only" data-i18n="language">Language</span>
+          <select id="language-select" aria-label="Language" data-i18n-aria-label="language">
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            <option value="bn">বাংলা</option>
+            <option value="ta">தமிழ்</option>
+            <option value="te">తెలుగు</option>
+          </select>
+        </label>
+        <a class="topbar-link" href="index.html" data-i18n="back">← Back to planner</a>
+      </div>
+    </header>
+
+    <main class="auth-main">
+      <section class="auth-card" aria-labelledby="auth-title">
+        <div class="auth-icon" aria-hidden="true">✳</div>
+        <div class="eyebrow"><span class="eyebrow-line"></span> <span data-i18n="authEyebrow">YOUR FIELD, IN BALANCE</span></div>
+        <h1 id="auth-title">Welcome back.</h1>
+        <p class="auth-description" data-i18n="authDescription">Sign in to pick up where you left off, or create an account to get started.</p>
+
+        <div class="auth-tabs" role="tablist" aria-label="Account access" data-i18n-aria-label="accountAccess">
+          <button class="auth-tab is-active" id="login-tab" type="button" role="tab" aria-selected="true" aria-controls="auth-form" data-mode="login"><span data-i18n="signIn">Sign in</span></button>
+          <button class="auth-tab" id="register-tab" type="button" role="tab" aria-selected="false" aria-controls="auth-form" data-mode="register"><span data-i18n="register">Create account</span></button>
+        </div>
+
+        <form id="auth-form" novalidate>
+          <label class="field-label" for="email" data-i18n="email">Email address</label>
+          <input class="auth-input" id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" data-i18n-placeholder="emailPlaceholder" required>
+
+          <div class="password-label">
+            <label class="field-label" for="password" data-i18n="password">Password</label>
+            <span id="password-hint" data-i18n="passwordHint">At least 8 characters</span>
+          </div>
+          <input class="auth-input" id="password" name="password" type="password" autocomplete="current-password" minlength="8" placeholder="Enter your password" data-i18n-placeholder="passwordPlaceholder" required>
+
+          <div id="confirm-wrap" hidden>
+            <label class="field-label confirm-label" for="confirm-password" data-i18n="confirmPassword">Confirm password</label>
+            <input class="auth-input" id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" minlength="8" placeholder="Re-enter your password" data-i18n-placeholder="confirmPlaceholder">
+          </div>
+
+          <div class="auth-notice" id="auth-notice" role="status" aria-live="polite" hidden></div>
+          <button class="submit-button auth-submit" id="auth-submit" type="submit"><span data-i18n="signIn">Sign in</span><span aria-hidden="true">→</span></button>
+        </form>
+
+        <p class="auth-demo-note"><span aria-hidden="true">ⓘ</span> <span data-i18n="authNote">Passwords are securely hashed. Sign-in requires the agriSense server and MongoDB to be running.</span></p>
+        <a class="guest-link" href="index.html"><span data-i18n="guestLink">Continue to the planner without an account</span> <span aria-hidden="true">→</span></a>
+      </section>
+    </main>
+  </body>
+</html>
